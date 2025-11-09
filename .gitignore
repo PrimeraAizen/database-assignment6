@@ -1,0 +1,40 @@
+# Binaries
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+
+# Output of `go build`, `go test`, etc.
+bin/
+build/
+dist/
+*.a
+
+.env
+config.yaml
+# Go workspace
+
+# Dependency management (if using vendoring)
+vendor/
+
+# IDE / Editor files
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS-specific
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Cover profiles
+coverage.out
+
+# Go modules cache (do NOT ignore go.sum)
+# go.sum should be committed

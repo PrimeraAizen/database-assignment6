@@ -1,0 +1,1153 @@
+basePath: /api/v1
+definitions:
+  github_com_PrimeraAizen_e-comm_internal_delivery_dto.AuthResponse:
+    properties:
+      access_token:
+        type: string
+      expires_in:
+        type: integer
+      refresh_token:
+        type: string
+      token_type:
+        type: string
+    type: object
+  github_com_PrimeraAizen_e-comm_internal_delivery_dto.ChangePasswordRequest:
+    properties:
+      confirm_password:
+        minLength: 8
+        type: string
+      current_password:
+        type: string
+      new_password:
+        minLength: 8
+        type: string
+    required:
+    - confirm_password
+    - current_password
+    - new_password
+    type: object
+  github_com_PrimeraAizen_e-comm_internal_delivery_dto.CreateCategoryRequest:
+    properties:
+      description:
+        type: string
+      name:
+        type: string
+      parent_id:
+        type: integer
+    required:
+    - name
+    type: object
+  github_com_PrimeraAizen_e-comm_internal_delivery_dto.CreateProductRequest:
+    properties:
+      category_id:
+        type: integer
+      description:
+        type: string
+      image_url:
+        type: string
+      name:
+        type: string
+      price:
+        minimum: 0
+        type: number
+      stock:
+        minimum: 0
+        type: integer
+    required:
+    - name
+    - price
+    type: object
+  github_com_PrimeraAizen_e-comm_internal_delivery_dto.ErrorResponse:
+    properties:
+      error:
+        type: string
+    type: object
+  github_com_PrimeraAizen_e-comm_internal_delivery_dto.LoginRequest:
+    properties:
+      email:
+        type: string
+      password:
+        type: string
+    required:
+    - email
+    - password
+    type: object
+  github_com_PrimeraAizen_e-comm_internal_delivery_dto.ProductListResponse:
+    properties:
+      limit:
+        type: integer
+      page:
+        type: integer
+      products:
+        items:
+          $ref: '#/definitions/github_com_PrimeraAizen_e-comm_internal_domain.ProductWithCategory'
+        type: array
+      total:
+        type: integer
+    type: object
+  github_com_PrimeraAizen_e-comm_internal_delivery_dto.ProfileResponse:
+    properties:
+      address:
+        type: string
+      city:
+        type: string
+      country:
+        type: string
+      created_at:
+        type: string
+      date_of_birth:
+        type: string
+      email:
+        type: string
+      first_name:
+        type: string
+      gender:
+        type: string
+      id:
+        type: integer
+      last_name:
+        type: string
+      middle_name:
+        type: string
+      phone:
+        type: string
+      postal_code:
+        type: string
+      status:
+        type: string
+      updated_at:
+        type: string
+      user_id:
+        type: integer
+    type: object
+  github_com_PrimeraAizen_e-comm_internal_delivery_dto.PurchaseProductRequest:
+    properties:
+      quantity:
+        minimum: 1
+        type: integer
+    required:
+    - quantity
+    type: object
+  github_com_PrimeraAizen_e-comm_internal_delivery_dto.RefreshTokenRequest:
+    properties:
+      refresh_token:
+        type: string
+    required:
+    - refresh_token
+    type: object
+  github_com_PrimeraAizen_e-comm_internal_delivery_dto.RegisterRequest:
+    properties:
+      email:
+        type: string
+      password:
+        minLength: 8
+        type: string
+      password_confirm:
+        minLength: 8
+        type: string
+    required:
+    - email
+    - password
+    - password_confirm
+    type: object
+  github_com_PrimeraAizen_e-comm_internal_delivery_dto.SuccessResponse:
+    properties:
+      message:
+        type: string
+    type: object
+  github_com_PrimeraAizen_e-comm_internal_delivery_dto.UpdateCategoryRequest:
+    properties:
+      description:
+        type: string
+      name:
+        type: string
+      parent_id:
+        type: integer
+    type: object
+  github_com_PrimeraAizen_e-comm_internal_delivery_dto.UpdateProductRequest:
+    properties:
+      category_id:
+        type: integer
+      description:
+        type: string
+      image_url:
+        type: string
+      is_active:
+        type: boolean
+      name:
+        type: string
+      price:
+        type: number
+      stock:
+        type: integer
+    type: object
+  github_com_PrimeraAizen_e-comm_internal_delivery_dto.UpdateProfileRequest:
+    properties:
+      address:
+        type: string
+      city:
+        maxLength: 100
+        type: string
+      country:
+        maxLength: 100
+        type: string
+      date_of_birth:
+        type: string
+      first_name:
+        maxLength: 100
+        minLength: 1
+        type: string
+      gender:
+        maxLength: 20
+        type: string
+      last_name:
+        maxLength: 100
+        minLength: 1
+        type: string
+      middle_name:
+        maxLength: 100
+        type: string
+      phone:
+        maxLength: 50
+        type: string
+      postal_code:
+        maxLength: 20
+        type: string
+    type: object
+  github_com_PrimeraAizen_e-comm_internal_domain.Category:
+    properties:
+      created_at:
+        type: string
+      description:
+        type: string
+      id:
+        type: integer
+      name:
+        type: string
+      parent_id:
+        type: integer
+      updated_at:
+        type: string
+    type: object
+  github_com_PrimeraAizen_e-comm_internal_domain.ProductInteraction:
+    properties:
+      category_id:
+        type: integer
+      interacted_at:
+        type: string
+      price:
+        type: number
+      product_id:
+        type: integer
+      product_name:
+        type: string
+    type: object
+  github_com_PrimeraAizen_e-comm_internal_domain.ProductRecommendation:
+    properties:
+      category_id:
+        type: integer
+      price:
+        type: number
+      product_id:
+        type: integer
+      product_name:
+        type: string
+      reason:
+        description: Why recommended
+        type: string
+      score:
+        description: Similarity/relevance score
+        type: number
+    type: object
+  github_com_PrimeraAizen_e-comm_internal_domain.ProductStatistics:
+    properties:
+      average_rating:
+        type: number
+      like_count:
+        type: integer
+      product_id:
+        type: integer
+      product_name:
+        type: string
+      purchase_count:
+        type: integer
+      review_count:
+        type: integer
+      view_count:
+        type: integer
+    type: object
+  github_com_PrimeraAizen_e-comm_internal_domain.ProductWithCategory:
+    properties:
+      category_id:
+        type: integer
+      category_name:
+        type: string
+      created_at:
+        type: string
+      description:
+        type: string
+      id:
+        type: integer
+      image_url:
+        type: string
+      is_active:
+        type: boolean
+      name:
+        type: string
+      price:
+        type: number
+      stock:
+        type: integer
+      updated_at:
+        type: string
+    type: object
+  github_com_PrimeraAizen_e-comm_internal_domain.RecommendationResponse:
+    properties:
+      algorithm:
+        description: e.g., "collaborative_filtering"
+        type: string
+      generated_at:
+        type: string
+      recommendations:
+        items:
+          $ref: '#/definitions/github_com_PrimeraAizen_e-comm_internal_domain.ProductRecommendation'
+        type: array
+      user_id:
+        type: integer
+    type: object
+  github_com_PrimeraAizen_e-comm_internal_domain.UserInteractionSummary:
+    properties:
+      liked_products:
+        items:
+          $ref: '#/definitions/github_com_PrimeraAizen_e-comm_internal_domain.ProductInteraction'
+        type: array
+      purchased_products:
+        items:
+          $ref: '#/definitions/github_com_PrimeraAizen_e-comm_internal_domain.ProductInteraction'
+        type: array
+      total_likes:
+        type: integer
+      total_purchases:
+        type: integer
+      total_views:
+        type: integer
+      user_id:
+        type: integer
+      viewed_products:
+        items:
+          $ref: '#/definitions/github_com_PrimeraAizen_e-comm_internal_domain.ProductInteraction'
+        type: array
+    type: object
+host: localhost:8080
+info:
+  contact:
+    email: support@ecommerce.com
+    name: API Support
+  description: E-Commerce API with MongoDB, JWT Authentication, Product Catalog, User
+    Interactions, and Recommendation System
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+  termsOfService: http://swagger.io/terms/
+  title: E-Commerce API
+  version: "1.0"
+paths:
+  /auth/login:
+    post:
+      consumes:
+      - application/json
+      description: Authenticate user with email and password
+      parameters:
+      - description: Login credentials
+        in: body
+        name: credentials
+        required: true
+        schema:
+          $ref: '#/definitions/github_com_PrimeraAizen_e-comm_internal_delivery_dto.LoginRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Login successful with tokens
+          schema:
+            $ref: '#/definitions/github_com_PrimeraAizen_e-comm_internal_delivery_dto.AuthResponse'
+        "400":
+          description: Invalid request body or validation error
+          schema:
+            $ref: '#/definitions/github_com_PrimeraAizen_e-comm_internal_delivery_dto.ErrorResponse'
+        "401":
+          description: Invalid email or password
+          schema:
+            $ref: '#/definitions/github_com_PrimeraAizen_e-comm_internal_delivery_dto.ErrorResponse'
+        "403":
+          description: User account is inactive
+          schema:
+            $ref: '#/definitions/github_com_PrimeraAizen_e-comm_internal_delivery_dto.ErrorResponse'
+        "500":
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/github_com_PrimeraAizen_e-comm_internal_delivery_dto.ErrorResponse'
+      summary: Login user
+      tags:
+      - auth
+  /auth/refresh:
+    post:
+      consumes:
+      - application/json
+      description: Get a new access token using a valid refresh token
+      parameters:
+      - description: Refresh token
+        in: body
+        name: token
+        required: true
+        schema:
+          $ref: '#/definitions/github_com_PrimeraAizen_e-comm_internal_delivery_dto.RefreshTokenRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Token refreshed successfully
+          schema:
+            $ref: '#/definitions/github_com_PrimeraAizen_e-comm_internal_delivery_dto.AuthResponse'
+        "400":
+          description: Invalid request body or missing refresh token
+          schema:
+            $ref: '#/definitions/github_com_PrimeraAizen_e-comm_internal_delivery_dto.ErrorResponse'
+        "401":
+          description: Invalid or expired refresh token
+          schema:
+            $ref: '#/definitions/github_com_PrimeraAizen_e-comm_internal_delivery_dto.ErrorResponse'
+        "403":
+          description: User account is inactive
+          schema:
+            $ref: '#/definitions/github_com_PrimeraAizen_e-comm_internal_delivery_dto.ErrorResponse'
+        "500":
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/github_com_PrimeraAizen_e-comm_internal_delivery_dto.ErrorResponse'
+      summary: Refresh access token
+      tags:
+      - auth
+  /auth/register:
+    post:
+      consumes:
+      - application/json
+      description: Create a new user account with email and password
+      parameters:
+      - description: Registration details
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/github_com_PrimeraAizen_e-comm_internal_delivery_dto.RegisterRequest'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: User registered successfully with tokens
+          schema:
+            $ref: '#/definitions/github_com_PrimeraAizen_e-comm_internal_delivery_dto.AuthResponse'
+        "400":
+          description: Invalid request body or validation error
+          schema:
+            $ref: '#/definitions/github_com_PrimeraAizen_e-comm_internal_delivery_dto.ErrorResponse'
+        "409":
+          description: User with this email already exists
+          schema:
+            $ref: '#/definitions/github_com_PrimeraAizen_e-comm_internal_delivery_dto.ErrorResponse'
+        "500":
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/github_com_PrimeraAizen_e-comm_internal_delivery_dto.ErrorResponse'
+      summary: Register a new user
+      tags:
+      - auth
+  /categories:
+    get:
+      consumes:
+      - application/json
+      description: Get all product categories
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/github_com_PrimeraAizen_e-comm_internal_domain.Category'
+            type: array
+      security:
+      - BearerAuth: []
+      summary: List categories
+      tags:
+      - categories
+    post:
+      consumes:
+      - application/json
+      description: Create a new product category
+      parameters:
+      - description: Category data
+        in: body
+        name: category
+        required: true
+        schema:
+          $ref: '#/definitions/github_com_PrimeraAizen_e-comm_internal_delivery_dto.CreateCategoryRequest'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/github_com_PrimeraAizen_e-comm_internal_domain.Category'
+      security:
+      - BearerAuth: []
+      summary: Create category (Admin only)
+      tags:
+      - categories
+  /categories/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Delete a category
+      parameters:
+      - description: Category ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "204":
+          description: No Content
+      security:
+      - BearerAuth: []
+      summary: Delete category (Admin only)
+      tags:
+      - categories
+    get:
+      consumes:
+      - application/json
+      description: Get detailed information about a specific category
+      parameters:
+      - description: Category ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/github_com_PrimeraAizen_e-comm_internal_domain.Category'
+      security:
+      - BearerAuth: []
+      summary: Get category by ID
+      tags:
+      - categories
+    put:
+      consumes:
+      - application/json
+      description: Update an existing category (partial updates supported)
+      parameters:
+      - description: Category ID
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: Category data
+        in: body
+        name: category
+        required: true
+        schema:
+          $ref: '#/definitions/github_com_PrimeraAizen_e-comm_internal_delivery_dto.UpdateCategoryRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/github_com_PrimeraAizen_e-comm_internal_domain.Category'
+      security:
+      - BearerAuth: []
+      summary: Update category (Admin only)
+      tags:
+      - categories
+  /products:
+    get:
+      consumes:
+      - application/json
+      description: Get a paginated list of products with optional filters
+      parameters:
+      - default: 1
+        description: Page number
+        in: query
+        name: page
+        type: integer
+      - default: 20
+        description: Items per page
+        in: query
+        name: limit
+        type: integer
+      - description: Filter by category ID
+        in: query
+        name: category_id
+        type: string
+      - description: Minimum price
+        in: query
+        name: min_price
+        type: number
+      - description: Maximum price
+        in: query
+        name: max_price
+        type: number
+      - description: Search in name and description
+        in: query
+        name: search
+        type: string
+      - default: created_at
+        description: 'Sort by: name, price, created_at'
+        in: query
+        name: sort_by
+        type: string
+      - default: desc
+        description: 'Sort order: asc, desc'
+        in: query
+        name: sort_order
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/github_com_PrimeraAizen_e-comm_internal_delivery_dto.ProductListResponse'
+      security:
+      - BearerAuth: []
+      summary: List products
+      tags:
+      - products
+    post:
+      consumes:
+      - application/json
+      description: Create a new product (admin only)
+      parameters:
+      - description: Product data
+        in: body
+        name: product
+        required: true
+        schema:
+          $ref: '#/definitions/github_com_PrimeraAizen_e-comm_internal_delivery_dto.CreateProductRequest'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/github_com_PrimeraAizen_e-comm_internal_domain.ProductWithCategory'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/github_com_PrimeraAizen_e-comm_internal_delivery_dto.ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/github_com_PrimeraAizen_e-comm_internal_delivery_dto.ErrorResponse'
+      security:
+      - BearerAuth: []
+      summary: Create a new product
+      tags:
+      - products
+  /products/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Delete a product (admin only)
+      parameters:
+      - description: Product ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/github_com_PrimeraAizen_e-comm_internal_delivery_dto.SuccessResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/github_com_PrimeraAizen_e-comm_internal_delivery_dto.ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/github_com_PrimeraAizen_e-comm_internal_delivery_dto.ErrorResponse'
+      security:
+      - BearerAuth: []
+      summary: Delete a product
+      tags:
+      - products
+    get:
+      consumes:
+      - application/json
+      description: Get detailed information about a specific product
+      parameters:
+      - description: Product ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/github_com_PrimeraAizen_e-comm_internal_domain.ProductWithCategory'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/github_com_PrimeraAizen_e-comm_internal_delivery_dto.ErrorResponse'
+      security:
+      - BearerAuth: []
+      summary: Get product by ID
+      tags:
+      - products
+    put:
+      consumes:
+      - application/json
+      description: Update product information (admin only)
+      parameters:
+      - description: Product ID
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: Updated product data
+        in: body
+        name: product
+        required: true
+        schema:
+          $ref: '#/definitions/github_com_PrimeraAizen_e-comm_internal_delivery_dto.UpdateProductRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/github_com_PrimeraAizen_e-comm_internal_domain.ProductWithCategory'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/github_com_PrimeraAizen_e-comm_internal_delivery_dto.ErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/github_com_PrimeraAizen_e-comm_internal_delivery_dto.ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/github_com_PrimeraAizen_e-comm_internal_delivery_dto.ErrorResponse'
+      security:
+      - BearerAuth: []
+      summary: Update a product
+      tags:
+      - products
+  /products/{id}/like:
+    delete:
+      consumes:
+      - application/json
+      description: Remove a product from user's liked products
+      parameters:
+      - description: Product ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/github_com_PrimeraAizen_e-comm_internal_delivery_dto.SuccessResponse'
+      security:
+      - BearerAuth: []
+      summary: Unlike a product
+      tags:
+      - interactions
+    post:
+      consumes:
+      - application/json
+      description: Add a product to user's liked products
+      parameters:
+      - description: Product ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/github_com_PrimeraAizen_e-comm_internal_delivery_dto.SuccessResponse'
+      security:
+      - BearerAuth: []
+      summary: Like a product
+      tags:
+      - interactions
+  /products/{id}/liked:
+    get:
+      consumes:
+      - application/json
+      description: Check if the current user has liked a product
+      parameters:
+      - description: Product ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties:
+              type: boolean
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Check if product is liked
+      tags:
+      - interactions
+  /products/{id}/purchase:
+    post:
+      consumes:
+      - application/json
+      description: Record a product purchase and update stock
+      parameters:
+      - description: Product ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: Purchase details
+        in: body
+        name: purchase
+        required: true
+        schema:
+          $ref: '#/definitions/github_com_PrimeraAizen_e-comm_internal_delivery_dto.PurchaseProductRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/github_com_PrimeraAizen_e-comm_internal_delivery_dto.SuccessResponse'
+      security:
+      - BearerAuth: []
+      summary: Purchase a product
+      tags:
+      - interactions
+  /products/{id}/purchased:
+    get:
+      consumes:
+      - application/json
+      description: Check if the current user has purchased a product
+      parameters:
+      - description: Product ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties:
+              type: boolean
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Check if product is purchased
+      tags:
+      - interactions
+  /products/{id}/statistics:
+    get:
+      consumes:
+      - application/json
+      description: Get view count, like count, and purchase count for a product
+      parameters:
+      - description: Product ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/github_com_PrimeraAizen_e-comm_internal_domain.ProductStatistics'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/github_com_PrimeraAizen_e-comm_internal_delivery_dto.ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/github_com_PrimeraAizen_e-comm_internal_delivery_dto.ErrorResponse'
+      security:
+      - BearerAuth: []
+      summary: Get product statistics
+      tags:
+      - products
+  /products/{id}/view:
+    post:
+      consumes:
+      - application/json
+      description: Record that a user has viewed a product
+      parameters:
+      - description: Product ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/github_com_PrimeraAizen_e-comm_internal_delivery_dto.SuccessResponse'
+      security:
+      - BearerAuth: []
+      summary: Record product view
+      tags:
+      - interactions
+  /users/me/account:
+    delete:
+      description: Soft delete current user's account
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/github_com_PrimeraAizen_e-comm_internal_delivery_dto.SuccessResponse'
+      security:
+      - BearerAuth: []
+      summary: Delete account
+      tags:
+      - profile
+  /users/me/interactions:
+    get:
+      consumes:
+      - application/json
+      description: Get summary of current user's product interactions
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/github_com_PrimeraAizen_e-comm_internal_domain.UserInteractionSummary'
+      security:
+      - BearerAuth: []
+      summary: Get my interactions
+      tags:
+      - interactions
+  /users/me/likes:
+    get:
+      consumes:
+      - application/json
+      description: Get products the current user has liked
+      parameters:
+      - default: 50
+        description: Limit
+        in: query
+        name: limit
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Get my liked products
+      tags:
+      - interactions
+  /users/me/password:
+    put:
+      consumes:
+      - application/json
+      description: Change current user's password
+      parameters:
+      - description: Password change
+        in: body
+        name: password
+        required: true
+        schema:
+          $ref: '#/definitions/github_com_PrimeraAizen_e-comm_internal_delivery_dto.ChangePasswordRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/github_com_PrimeraAizen_e-comm_internal_delivery_dto.SuccessResponse'
+      security:
+      - BearerAuth: []
+      summary: Change password
+      tags:
+      - profile
+  /users/me/profile:
+    get:
+      description: Get current user's profile information with detailed profile data
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/github_com_PrimeraAizen_e-comm_internal_delivery_dto.ProfileResponse'
+      security:
+      - BearerAuth: []
+      summary: Get user profile
+      tags:
+      - profile
+    put:
+      consumes:
+      - application/json
+      description: Update current user's detailed profile information
+      parameters:
+      - description: Profile update
+        in: body
+        name: profile
+        required: true
+        schema:
+          $ref: '#/definitions/github_com_PrimeraAizen_e-comm_internal_delivery_dto.UpdateProfileRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/github_com_PrimeraAizen_e-comm_internal_delivery_dto.ProfileResponse'
+      security:
+      - BearerAuth: []
+      summary: Update user profile
+      tags:
+      - profile
+  /users/me/purchases:
+    get:
+      consumes:
+      - application/json
+      description: Get products the current user has purchased
+      parameters:
+      - default: 50
+        description: Limit
+        in: query
+        name: limit
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Get my purchases
+      tags:
+      - interactions
+  /users/me/recommendations:
+    get:
+      description: Get product recommendations based on collaborative filtering
+      parameters:
+      - default: 10
+        description: Number of recommendations
+        in: query
+        name: limit
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/github_com_PrimeraAizen_e-comm_internal_domain.RecommendationResponse'
+      security:
+      - BearerAuth: []
+      summary: Get personalized product recommendations
+      tags:
+      - recommendations
+  /users/me/similar:
+    get:
+      description: Get users with similar interaction patterns
+      parameters:
+      - default: 10
+        description: Number of similar users
+        in: query
+        name: limit
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Get similar users
+      tags:
+      - recommendations
+  /users/me/views:
+    get:
+      consumes:
+      - application/json
+      description: Get products the current user has viewed
+      parameters:
+      - default: 50
+        description: Limit
+        in: query
+        name: limit
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Get my view history
+      tags:
+      - interactions
+securityDefinitions:
+  BearerAuth:
+    description: 'Enter your JWT token in the format: Bearer {token}'
+    in: header
+    name: Authorization
+    type: apiKey
+swagger: "2.0"

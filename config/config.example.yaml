@@ -1,0 +1,31 @@
+http:
+  host: localhost
+  port: "8080"
+
+mongodb:
+  # You can use URI directly or provide host/port/database separately
+  # uri: "mongodb://localhost:27017"  # Optional: full connection string
+  host: localhost
+  port: "27017"
+  database: ecommerce
+  username: ""  # Optional: leave empty for no auth
+  password: ""  # Optional: leave empty for no auth
+  max_pool_size: 100
+  min_pool_size: 10
+  max_conn_idle_time: 60  # seconds
+
+logger:
+  level: info          # debug, info, warn, error
+  format: json         # json, text
+  output: stdout       # stdout, stderr, file
+  file_path: ""        # required when output is 'file'
+  add_source: false    # add source file and line number
+  service: ecommerce   # service name for logs
+  version: "1.0.0"     # service version
+  environment: development  # development, staging, production
+
+jwt:
+  secret: "your-secret-key-change-this-in-production-min-32-chars"
+  access_token_duration: "15m"
+  refresh_token_duration: "168h"  # 7 days
+
