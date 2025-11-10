@@ -335,7 +335,7 @@ func (h *Handler) GetProductStatistics(c *gin.Context) {
 // RecordProductView godoc
 // @Summary Record product view
 // @Description Record that a user has viewed a product
-// @Tags interactions
+// @Tags products
 // @Accept json
 // @Produce json
 // @Param id path int true "Product ID"
@@ -375,7 +375,7 @@ func (h *Handler) RecordProductView(c *gin.Context) {
 // LikeProduct godoc
 // @Summary Like a product
 // @Description Add a product to user's liked products
-// @Tags interactions
+// @Tags products
 // @Accept json
 // @Produce json
 // @Param id path int true "Product ID"
@@ -415,7 +415,7 @@ func (h *Handler) LikeProduct(c *gin.Context) {
 // UnlikeProduct godoc
 // @Summary Unlike a product
 // @Description Remove a product from user's liked products
-// @Tags interactions
+// @Tags products
 // @Accept json
 // @Produce json
 // @Param id path int true "Product ID"
@@ -455,7 +455,7 @@ func (h *Handler) UnlikeProduct(c *gin.Context) {
 // CheckProductLiked godoc
 // @Summary Check if product is liked
 // @Description Check if the current user has liked a product
-// @Tags interactions
+// @Tags products
 // @Accept json
 // @Produce json
 // @Param id path int true "Product ID"
@@ -496,7 +496,7 @@ func (h *Handler) CheckProductLiked(c *gin.Context) {
 // PurchaseProduct godoc
 // @Summary Purchase a product
 // @Description Record a product purchase and update stock
-// @Tags interactions
+// @Tags products
 // @Accept json
 // @Produce json
 // @Param id path int true "Product ID"
@@ -552,7 +552,7 @@ func (h *Handler) PurchaseProduct(c *gin.Context) {
 // CheckProductPurchased godoc
 // @Summary Check if product is purchased
 // @Description Check if the current user has purchased a product
-// @Tags interactions
+// @Tags products
 // @Accept json
 // @Produce json
 // @Param id path int true "Product ID"

@@ -77,7 +77,7 @@ func (h *Handler) GetCategory(c *gin.Context) {
 }
 
 // CreateCategory godoc
-// @Summary Create category (Admin only)
+// @Summary Create category
 // @Description Create a new product category
 // @Tags categories
 // @Accept json
@@ -116,8 +116,8 @@ func (h *Handler) CreateCategory(c *gin.Context) {
 }
 
 // UpdateCategory godoc
-// @Summary Update category (Admin only)
-// @Description Update an existing category (partial updates supported)
+// @Summary Update category
+// @Description Update an existing category 
 // @Tags categories
 // @Accept json
 // @Produce json
@@ -179,8 +179,8 @@ func (h *Handler) UpdateCategory(c *gin.Context) {
 }
 
 // DeleteCategory godoc
-// @Summary Delete category (Admin only)
-// @Description Delete a category
+// @Summary Delete category
+// @Description Delete a category 
 // @Tags categories
 // @Accept json
 // @Produce json

@@ -9,15 +9,7 @@ const docTemplate = `{
     "info": {
         "description": "{{escape .Description}}",
         "title": "{{.Title}}",
-        "termsOfService": "http://swagger.io/terms/",
-        "contact": {
-            "name": "API Support",
-            "email": "support@ecommerce.com"
-        },
-        "license": {
-            "name": "MIT",
-            "url": "https://opensource.org/licenses/MIT"
-        },
+        "contact": {},
         "version": "{{.Version}}"
     },
     "host": "{{.Host}}",
@@ -43,7 +35,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/github_com_PrimeraAizen_e-comm_internal_delivery_dto.LoginRequest"
+                            "$ref": "#/definitions/dto.LoginRequest"
                         }
                     }
                 ],
@@ -51,31 +43,31 @@ const docTemplate = `{
                     "200": {
                         "description": "Login successful with tokens",
                         "schema": {
-                            "$ref": "#/definitions/github_com_PrimeraAizen_e-comm_internal_delivery_dto.AuthResponse"
+                            "$ref": "#/definitions/dto.AuthResponse"
                         }
                     },
                     "400": {
                         "description": "Invalid request body or validation error",
                         "schema": {
-                            "$ref": "#/definitions/github_com_PrimeraAizen_e-comm_internal_delivery_dto.ErrorResponse"
+                            "$ref": "#/definitions/dto.ErrorResponse"
                         }
                     },
                     "401": {
                         "description": "Invalid email or password",
                         "schema": {
-                            "$ref": "#/definitions/github_com_PrimeraAizen_e-comm_internal_delivery_dto.ErrorResponse"
+                            "$ref": "#/definitions/dto.ErrorResponse"
                         }
                     },
                     "403": {
                         "description": "User account is inactive",
                         "schema": {
-                            "$ref": "#/definitions/github_com_PrimeraAizen_e-comm_internal_delivery_dto.ErrorResponse"
+                            "$ref": "#/definitions/dto.ErrorResponse"
                         }
                     },
                     "500": {
                         "description": "Internal server error",
                         "schema": {
-                            "$ref": "#/definitions/github_com_PrimeraAizen_e-comm_internal_delivery_dto.ErrorResponse"
+                            "$ref": "#/definitions/dto.ErrorResponse"
                         }
                     }
                 }
@@ -101,7 +93,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/github_com_PrimeraAizen_e-comm_internal_delivery_dto.RefreshTokenRequest"
+                            "$ref": "#/definitions/dto.RefreshTokenRequest"
                         }
                     }
                 ],
@@ -109,31 +101,31 @@ const docTemplate = `{
                     "200": {
                         "description": "Token refreshed successfully",
                         "schema": {
-                            "$ref": "#/definitions/github_com_PrimeraAizen_e-comm_internal_delivery_dto.AuthResponse"
+                            "$ref": "#/definitions/dto.AuthResponse"
                         }
                     },
                     "400": {
                         "description": "Invalid request body or missing refresh token",
                         "schema": {
-                            "$ref": "#/definitions/github_com_PrimeraAizen_e-comm_internal_delivery_dto.ErrorResponse"
+                            "$ref": "#/definitions/dto.ErrorResponse"
                         }
                     },
                     "401": {
                         "description": "Invalid or expired refresh token",
                         "schema": {
-                            "$ref": "#/definitions/github_com_PrimeraAizen_e-comm_internal_delivery_dto.ErrorResponse"
+                            "$ref": "#/definitions/dto.ErrorResponse"
                         }
                     },
                     "403": {
                         "description": "User account is inactive",
                         "schema": {
-                            "$ref": "#/definitions/github_com_PrimeraAizen_e-comm_internal_delivery_dto.ErrorResponse"
+                            "$ref": "#/definitions/dto.ErrorResponse"
                         }
                     },
                     "500": {
                         "description": "Internal server error",
                         "schema": {
-                            "$ref": "#/definitions/github_com_PrimeraAizen_e-comm_internal_delivery_dto.ErrorResponse"
+                            "$ref": "#/definitions/dto.ErrorResponse"
                         }
                     }
                 }
@@ -159,7 +151,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/github_com_PrimeraAizen_e-comm_internal_delivery_dto.RegisterRequest"
+                            "$ref": "#/definitions/dto.RegisterRequest"
                         }
                     }
                 ],
@@ -167,25 +159,25 @@ const docTemplate = `{
                     "201": {
                         "description": "User registered successfully with tokens",
                         "schema": {
-                            "$ref": "#/definitions/github_com_PrimeraAizen_e-comm_internal_delivery_dto.AuthResponse"
+                            "$ref": "#/definitions/dto.AuthResponse"
                         }
                     },
                     "400": {
                         "description": "Invalid request body or validation error",
                         "schema": {
-                            "$ref": "#/definitions/github_com_PrimeraAizen_e-comm_internal_delivery_dto.ErrorResponse"
+                            "$ref": "#/definitions/dto.ErrorResponse"
                         }
                     },
                     "409": {
                         "description": "User with this email already exists",
                         "schema": {
-                            "$ref": "#/definitions/github_com_PrimeraAizen_e-comm_internal_delivery_dto.ErrorResponse"
+                            "$ref": "#/definitions/dto.ErrorResponse"
                         }
                     },
                     "500": {
                         "description": "Internal server error",
                         "schema": {
-                            "$ref": "#/definitions/github_com_PrimeraAizen_e-comm_internal_delivery_dto.ErrorResponse"
+                            "$ref": "#/definitions/dto.ErrorResponse"
                         }
                     }
                 }
@@ -215,7 +207,7 @@ const docTemplate = `{
                         "schema": {
                             "type": "array",
                             "items": {
-                                "$ref": "#/definitions/github_com_PrimeraAizen_e-comm_internal_domain.Category"
+                                "$ref": "#/definitions/domain.Category"
                             }
                         }
                     }
@@ -237,7 +229,7 @@ const docTemplate = `{
                 "tags": [
                     "categories"
                 ],
-                "summary": "Create category (Admin only)",
+                "summary": "Create category",
                 "parameters": [
                     {
                         "description": "Category data",
@@ -245,7 +237,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/github_com_PrimeraAizen_e-comm_internal_delivery_dto.CreateCategoryRequest"
+                            "$ref": "#/definitions/dto.CreateCategoryRequest"
                         }
                     }
                 ],
@@ -253,7 +245,7 @@ const docTemplate = `{
                     "201": {
                         "description": "Created",
                         "schema": {
-                            "$ref": "#/definitions/github_com_PrimeraAizen_e-comm_internal_domain.Category"
+                            "$ref": "#/definitions/domain.Category"
                         }
                     }
                 }
@@ -290,7 +282,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/github_com_PrimeraAizen_e-comm_internal_domain.Category"
+                            "$ref": "#/definitions/domain.Category"
                         }
                     }
                 }
@@ -301,7 +293,7 @@ const docTemplate = `{
                         "BearerAuth": []
                     }
                 ],
-                "description": "Update an existing category (partial updates supported)",
+                "description": "Update an existing category",
                 "consumes": [
                     "application/json"
                 ],
@@ -311,7 +303,7 @@ const docTemplate = `{
                 "tags": [
                     "categories"
                 ],
-                "summary": "Update category (Admin only)",
+                "summary": "Update category",
                 "parameters": [
                     {
                         "type": "string",
@@ -326,7 +318,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/github_com_PrimeraAizen_e-comm_internal_delivery_dto.UpdateCategoryRequest"
+                            "$ref": "#/definitions/dto.UpdateCategoryRequest"
                         }
                     }
                 ],
@@ -334,7 +326,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/github_com_PrimeraAizen_e-comm_internal_domain.Category"
+                            "$ref": "#/definitions/domain.Category"
                         }
                     }
                 }
@@ -355,7 +347,7 @@ const docTemplate = `{
                 "tags": [
                     "categories"
                 ],
-                "summary": "Delete category (Admin only)",
+                "summary": "Delete category",
                 "parameters": [
                     {
                         "type": "string",
@@ -448,7 +440,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/github_com_PrimeraAizen_e-comm_internal_delivery_dto.ProductListResponse"
+                            "$ref": "#/definitions/dto.ProductListResponse"
                         }
                     }
                 }
@@ -477,7 +469,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/github_com_PrimeraAizen_e-comm_internal_delivery_dto.CreateProductRequest"
+                            "$ref": "#/definitions/dto.CreateProductRequest"
                         }
                     }
                 ],
@@ -485,19 +477,19 @@ const docTemplate = `{
                     "201": {
                         "description": "Created",
                         "schema": {
-                            "$ref": "#/definitions/github_com_PrimeraAizen_e-comm_internal_domain.ProductWithCategory"
+                            "$ref": "#/definitions/domain.ProductWithCategory"
                         }
                     },
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/github_com_PrimeraAizen_e-comm_internal_delivery_dto.ErrorResponse"
+                            "$ref": "#/definitions/dto.ErrorResponse"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/github_com_PrimeraAizen_e-comm_internal_delivery_dto.ErrorResponse"
+                            "$ref": "#/definitions/dto.ErrorResponse"
                         }
                     }
                 }
@@ -534,13 +526,13 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/github_com_PrimeraAizen_e-comm_internal_domain.ProductWithCategory"
+                            "$ref": "#/definitions/domain.ProductWithCategory"
                         }
                     },
                     "404": {
                         "description": "Not Found",
                         "schema": {
-                            "$ref": "#/definitions/github_com_PrimeraAizen_e-comm_internal_delivery_dto.ErrorResponse"
+                            "$ref": "#/definitions/dto.ErrorResponse"
                         }
                     }
                 }
@@ -576,7 +568,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/github_com_PrimeraAizen_e-comm_internal_delivery_dto.UpdateProductRequest"
+                            "$ref": "#/definitions/dto.UpdateProductRequest"
                         }
                     }
                 ],
@@ -584,25 +576,25 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/github_com_PrimeraAizen_e-comm_internal_domain.ProductWithCategory"
+                            "$ref": "#/definitions/domain.ProductWithCategory"
                         }
                     },
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/github_com_PrimeraAizen_e-comm_internal_delivery_dto.ErrorResponse"
+                            "$ref": "#/definitions/dto.ErrorResponse"
                         }
                     },
                     "404": {
                         "description": "Not Found",
                         "schema": {
-                            "$ref": "#/definitions/github_com_PrimeraAizen_e-comm_internal_delivery_dto.ErrorResponse"
+                            "$ref": "#/definitions/dto.ErrorResponse"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/github_com_PrimeraAizen_e-comm_internal_delivery_dto.ErrorResponse"
+                            "$ref": "#/definitions/dto.ErrorResponse"
                         }
                     }
                 }
@@ -637,19 +629,19 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/github_com_PrimeraAizen_e-comm_internal_delivery_dto.SuccessResponse"
+                            "$ref": "#/definitions/dto.SuccessResponse"
                         }
                     },
                     "404": {
                         "description": "Not Found",
                         "schema": {
-                            "$ref": "#/definitions/github_com_PrimeraAizen_e-comm_internal_delivery_dto.ErrorResponse"
+                            "$ref": "#/definitions/dto.ErrorResponse"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/github_com_PrimeraAizen_e-comm_internal_delivery_dto.ErrorResponse"
+                            "$ref": "#/definitions/dto.ErrorResponse"
                         }
                     }
                 }
@@ -670,7 +662,7 @@ const docTemplate = `{
                     "application/json"
                 ],
                 "tags": [
-                    "interactions"
+                    "products"
                 ],
                 "summary": "Like a product",
                 "parameters": [
@@ -686,7 +678,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/github_com_PrimeraAizen_e-comm_internal_delivery_dto.SuccessResponse"
+                            "$ref": "#/definitions/dto.SuccessResponse"
                         }
                     }
                 }
@@ -705,7 +697,7 @@ const docTemplate = `{
                     "application/json"
                 ],
                 "tags": [
-                    "interactions"
+                    "products"
                 ],
                 "summary": "Unlike a product",
                 "parameters": [
@@ -721,7 +713,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/github_com_PrimeraAizen_e-comm_internal_delivery_dto.SuccessResponse"
+                            "$ref": "#/definitions/dto.SuccessResponse"
                         }
                     }
                 }
@@ -742,7 +734,7 @@ const docTemplate = `{
                     "application/json"
                 ],
                 "tags": [
-                    "interactions"
+                    "products"
                 ],
                 "summary": "Check if product is liked",
                 "parameters": [
@@ -782,7 +774,7 @@ const docTemplate = `{
                     "application/json"
                 ],
                 "tags": [
-                    "interactions"
+                    "products"
                 ],
                 "summary": "Purchase a product",
                 "parameters": [
@@ -799,7 +791,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/github_com_PrimeraAizen_e-comm_internal_delivery_dto.PurchaseProductRequest"
+                            "$ref": "#/definitions/dto.PurchaseProductRequest"
                         }
                     }
                 ],
@@ -807,7 +799,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/github_com_PrimeraAizen_e-comm_internal_delivery_dto.SuccessResponse"
+                            "$ref": "#/definitions/dto.SuccessResponse"
                         }
                     }
                 }
@@ -828,7 +820,7 @@ const docTemplate = `{
                     "application/json"
                 ],
                 "tags": [
-                    "interactions"
+                    "products"
                 ],
                 "summary": "Check if product is purchased",
                 "parameters": [
@@ -884,19 +876,19 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/github_com_PrimeraAizen_e-comm_internal_domain.ProductStatistics"
+                            "$ref": "#/definitions/domain.ProductStatistics"
                         }
                     },
                     "404": {
                         "description": "Not Found",
                         "schema": {
-                            "$ref": "#/definitions/github_com_PrimeraAizen_e-comm_internal_delivery_dto.ErrorResponse"
+                            "$ref": "#/definitions/dto.ErrorResponse"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/github_com_PrimeraAizen_e-comm_internal_delivery_dto.ErrorResponse"
+                            "$ref": "#/definitions/dto.ErrorResponse"
                         }
                     }
                 }
@@ -917,7 +909,7 @@ const docTemplate = `{
                     "application/json"
                 ],
                 "tags": [
-                    "interactions"
+                    "products"
                 ],
                 "summary": "Record product view",
                 "parameters": [
@@ -933,13 +925,75 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/github_com_PrimeraAizen_e-comm_internal_delivery_dto.SuccessResponse"
+                            "$ref": "#/definitions/dto.SuccessResponse"
                         }
                     }
                 }
             }
         },
-        "/users/me/account": {
+        "/profiles/me": {
+            "get": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "Get current user's profile information with detailed profile data",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "profiles"
+                ],
+                "summary": "Get user profile",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/dto.ProfileResponse"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "Update current user's detailed profile information",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "profiles"
+                ],
+                "summary": "Update user profile",
+                "parameters": [
+                    {
+                        "description": "Profile update",
+                        "name": "profile",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/dto.UpdateProfileRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/dto.ProfileResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/profiles/me/account": {
             "delete": {
                 "security": [
                     {
@@ -951,20 +1005,20 @@ const docTemplate = `{
                     "application/json"
                 ],
                 "tags": [
-                    "profile"
+                    "profiles"
                 ],
                 "summary": "Delete account",
                 "responses": {
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/github_com_PrimeraAizen_e-comm_internal_delivery_dto.SuccessResponse"
+                            "$ref": "#/definitions/dto.SuccessResponse"
                         }
                     }
                 }
             }
         },
-        "/users/me/interactions": {
+        "/profiles/me/interactions": {
             "get": {
                 "security": [
                     {
@@ -979,20 +1033,20 @@ const docTemplate = `{
                     "application/json"
                 ],
                 "tags": [
-                    "interactions"
+                    "profiles"
                 ],
                 "summary": "Get my interactions",
                 "responses": {
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/github_com_PrimeraAizen_e-comm_internal_domain.UserInteractionSummary"
+                            "$ref": "#/definitions/domain.UserInteractionSummary"
                         }
                     }
                 }
             }
         },
-        "/users/me/likes": {
+        "/profiles/me/likes": {
             "get": {
                 "security": [
                     {
@@ -1007,7 +1061,7 @@ const docTemplate = `{
                     "application/json"
                 ],
                 "tags": [
-                    "interactions"
+                    "profiles"
                 ],
                 "summary": "Get my liked products",
                 "parameters": [
@@ -1030,7 +1084,7 @@ const docTemplate = `{
                 }
             }
         },
-        "/users/me/password": {
+        "/profiles/me/password": {
             "put": {
                 "security": [
                     {
@@ -1045,7 +1099,7 @@ const docTemplate = `{
                     "application/json"
                 ],
                 "tags": [
-                    "profile"
+                    "profiles"
                 ],
                 "summary": "Change password",
                 "parameters": [
@@ -1055,7 +1109,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/github_com_PrimeraAizen_e-comm_internal_delivery_dto.ChangePasswordRequest"
+                            "$ref": "#/definitions/dto.ChangePasswordRequest"
                         }
                     }
                 ],
@@ -1063,75 +1117,13 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/github_com_PrimeraAizen_e-comm_internal_delivery_dto.SuccessResponse"
+                            "$ref": "#/definitions/dto.SuccessResponse"
                         }
                     }
                 }
             }
         },
-        "/users/me/profile": {
-            "get": {
-                "security": [
-                    {
-                        "BearerAuth": []
-                    }
-                ],
-                "description": "Get current user's profile information with detailed profile data",
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "profile"
-                ],
-                "summary": "Get user profile",
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/github_com_PrimeraAizen_e-comm_internal_delivery_dto.ProfileResponse"
-                        }
-                    }
-                }
-            },
-            "put": {
-                "security": [
-                    {
-                        "BearerAuth": []
-                    }
-                ],
-                "description": "Update current user's detailed profile information",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "profile"
-                ],
-                "summary": "Update user profile",
-                "parameters": [
-                    {
-                        "description": "Profile update",
-                        "name": "profile",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/github_com_PrimeraAizen_e-comm_internal_delivery_dto.UpdateProfileRequest"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/github_com_PrimeraAizen_e-comm_internal_delivery_dto.ProfileResponse"
-                        }
-                    }
-                }
-            }
-        },
-        "/users/me/purchases": {
+        "/profiles/me/purchases": {
             "get": {
                 "security": [
                     {
@@ -1146,7 +1138,7 @@ const docTemplate = `{
                     "application/json"
                 ],
                 "tags": [
-                    "interactions"
+                    "profiles"
                 ],
                 "summary": "Get my purchases",
                 "parameters": [
@@ -1169,7 +1161,7 @@ const docTemplate = `{
                 }
             }
         },
-        "/users/me/recommendations": {
+        "/profiles/me/recommendations": {
             "get": {
                 "security": [
                     {
@@ -1181,7 +1173,7 @@ const docTemplate = `{
                     "application/json"
                 ],
                 "tags": [
-                    "recommendations"
+                    "profiles"
                 ],
                 "summary": "Get personalized product recommendations",
                 "parameters": [
@@ -1197,13 +1189,13 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/github_com_PrimeraAizen_e-comm_internal_domain.RecommendationResponse"
+                            "$ref": "#/definitions/domain.RecommendationResponse"
                         }
                     }
                 }
             }
         },
-        "/users/me/similar": {
+        "/profiles/me/similar": {
             "get": {
                 "security": [
                     {
@@ -1215,7 +1207,7 @@ const docTemplate = `{
                     "application/json"
                 ],
                 "tags": [
-                    "recommendations"
+                    "profiles"
                 ],
                 "summary": "Get similar users",
                 "parameters": [
@@ -1238,7 +1230,7 @@ const docTemplate = `{
                 }
             }
         },
-        "/users/me/views": {
+        "/profiles/me/views": {
             "get": {
                 "security": [
                     {
@@ -1253,7 +1245,7 @@ const docTemplate = `{
                     "application/json"
                 ],
                 "tags": [
-                    "interactions"
+                    "profiles"
                 ],
                 "summary": "Get my view history",
                 "parameters": [
@@ -1278,7 +1270,195 @@ const docTemplate = `{
         }
     },
     "definitions": {
-        "github_com_PrimeraAizen_e-comm_internal_delivery_dto.AuthResponse": {
+        "domain.Category": {
+            "type": "object",
+            "properties": {
+                "created_at": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "parent_id": {
+                    "type": "integer"
+                },
+                "updated_at": {
+                    "type": "string"
+                }
+            }
+        },
+        "domain.ProductInteraction": {
+            "type": "object",
+            "properties": {
+                "category_id": {
+                    "type": "integer"
+                },
+                "interacted_at": {
+                    "type": "string"
+                },
+                "price": {
+                    "type": "number"
+                },
+                "product_id": {
+                    "type": "integer"
+                },
+                "product_name": {
+                    "type": "string"
+                }
+            }
+        },
+        "domain.ProductRecommendation": {
+            "type": "object",
+            "properties": {
+                "category_id": {
+                    "type": "integer"
+                },
+                "price": {
+                    "type": "number"
+                },
+                "product_id": {
+                    "type": "integer"
+                },
+                "product_name": {
+                    "type": "string"
+                },
+                "reason": {
+                    "description": "Why recommended",
+                    "type": "string"
+                },
+                "score": {
+                    "description": "Similarity/relevance score",
+                    "type": "number"
+                }
+            }
+        },
+        "domain.ProductStatistics": {
+            "type": "object",
+            "properties": {
+                "average_rating": {
+                    "type": "number"
+                },
+                "like_count": {
+                    "type": "integer"
+                },
+                "product_id": {
+                    "type": "integer"
+                },
+                "product_name": {
+                    "type": "string"
+                },
+                "purchase_count": {
+                    "type": "integer"
+                },
+                "review_count": {
+                    "type": "integer"
+                },
+                "view_count": {
+                    "type": "integer"
+                }
+            }
+        },
+        "domain.ProductWithCategory": {
+            "type": "object",
+            "properties": {
+                "category_id": {
+                    "type": "integer"
+                },
+                "category_name": {
+                    "type": "string"
+                },
+                "created_at": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "image_url": {
+                    "type": "string"
+                },
+                "is_active": {
+                    "type": "boolean"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "price": {
+                    "type": "number"
+                },
+                "stock": {
+                    "type": "integer"
+                },
+                "updated_at": {
+                    "type": "string"
+                }
+            }
+        },
+        "domain.RecommendationResponse": {
+            "type": "object",
+            "properties": {
+                "algorithm": {
+                    "description": "e.g., \"collaborative_filtering\"",
+                    "type": "string"
+                },
+                "generated_at": {
+                    "type": "string"
+                },
+                "recommendations": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/domain.ProductRecommendation"
+                    }
+                },
+                "user_id": {
+                    "type": "integer"
+                }
+            }
+        },
+        "domain.UserInteractionSummary": {
+            "type": "object",
+            "properties": {
+                "liked_products": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/domain.ProductInteraction"
+                    }
+                },
+                "purchased_products": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/domain.ProductInteraction"
+                    }
+                },
+                "total_likes": {
+                    "type": "integer"
+                },
+                "total_purchases": {
+                    "type": "integer"
+                },
+                "total_views": {
+                    "type": "integer"
+                },
+                "user_id": {
+                    "type": "integer"
+                },
+                "viewed_products": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/domain.ProductInteraction"
+                    }
+                }
+            }
+        },
+        "dto.AuthResponse": {
             "type": "object",
             "properties": {
                 "access_token": {
@@ -1295,7 +1475,7 @@ const docTemplate = `{
                 }
             }
         },
-        "github_com_PrimeraAizen_e-comm_internal_delivery_dto.ChangePasswordRequest": {
+        "dto.ChangePasswordRequest": {
             "type": "object",
             "required": [
                 "confirm_password",
@@ -1316,7 +1496,7 @@ const docTemplate = `{
                 }
             }
         },
-        "github_com_PrimeraAizen_e-comm_internal_delivery_dto.CreateCategoryRequest": {
+        "dto.CreateCategoryRequest": {
             "type": "object",
             "required": [
                 "name"
@@ -1333,7 +1513,7 @@ const docTemplate = `{
                 }
             }
         },
-        "github_com_PrimeraAizen_e-comm_internal_delivery_dto.CreateProductRequest": {
+        "dto.CreateProductRequest": {
             "type": "object",
             "required": [
                 "name",
@@ -1362,7 +1542,7 @@ const docTemplate = `{
                 }
             }
         },
-        "github_com_PrimeraAizen_e-comm_internal_delivery_dto.ErrorResponse": {
+        "dto.ErrorResponse": {
             "type": "object",
             "properties": {
                 "error": {
@@ -1370,7 +1550,7 @@ const docTemplate = `{
                 }
             }
         },
-        "github_com_PrimeraAizen_e-comm_internal_delivery_dto.LoginRequest": {
+        "dto.LoginRequest": {
             "type": "object",
             "required": [
                 "email",
@@ -1385,7 +1565,7 @@ const docTemplate = `{
                 }
             }
         },
-        "github_com_PrimeraAizen_e-comm_internal_delivery_dto.ProductListResponse": {
+        "dto.ProductListResponse": {
             "type": "object",
             "properties": {
                 "limit": {
@@ -1397,7 +1577,7 @@ const docTemplate = `{
                 "products": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/github_com_PrimeraAizen_e-comm_internal_domain.ProductWithCategory"
+                        "$ref": "#/definitions/domain.ProductWithCategory"
                     }
                 },
                 "total": {
@@ -1405,7 +1585,7 @@ const docTemplate = `{
                 }
             }
         },
-        "github_com_PrimeraAizen_e-comm_internal_delivery_dto.ProfileResponse": {
+        "dto.ProfileResponse": {
             "type": "object",
             "properties": {
                 "address": {
@@ -1458,7 +1638,7 @@ const docTemplate = `{
                 }
             }
         },
-        "github_com_PrimeraAizen_e-comm_internal_delivery_dto.PurchaseProductRequest": {
+        "dto.PurchaseProductRequest": {
             "type": "object",
             "required": [
                 "quantity"
@@ -1470,7 +1650,7 @@ const docTemplate = `{
                 }
             }
         },
-        "github_com_PrimeraAizen_e-comm_internal_delivery_dto.RefreshTokenRequest": {
+        "dto.RefreshTokenRequest": {
             "type": "object",
             "required": [
                 "refresh_token"
@@ -1481,7 +1661,7 @@ const docTemplate = `{
                 }
             }
         },
-        "github_com_PrimeraAizen_e-comm_internal_delivery_dto.RegisterRequest": {
+        "dto.RegisterRequest": {
             "type": "object",
             "required": [
                 "email",
@@ -1502,7 +1682,7 @@ const docTemplate = `{
                 }
             }
         },
-        "github_com_PrimeraAizen_e-comm_internal_delivery_dto.SuccessResponse": {
+        "dto.SuccessResponse": {
             "type": "object",
             "properties": {
                 "message": {
@@ -1510,7 +1690,7 @@ const docTemplate = `{
                 }
             }
         },
-        "github_com_PrimeraAizen_e-comm_internal_delivery_dto.UpdateCategoryRequest": {
+        "dto.UpdateCategoryRequest": {
             "type": "object",
             "properties": {
                 "description": {
@@ -1524,7 +1704,7 @@ const docTemplate = `{
                 }
             }
         },
-        "github_com_PrimeraAizen_e-comm_internal_delivery_dto.UpdateProductRequest": {
+        "dto.UpdateProductRequest": {
             "type": "object",
             "properties": {
                 "category_id": {
@@ -1550,7 +1730,7 @@ const docTemplate = `{
                 }
             }
         },
-        "github_com_PrimeraAizen_e-comm_internal_delivery_dto.UpdateProfileRequest": {
+        "dto.UpdateProfileRequest": {
             "type": "object",
             "properties": {
                 "address": {
@@ -1594,194 +1774,6 @@ const docTemplate = `{
                     "maxLength": 20
                 }
             }
-        },
-        "github_com_PrimeraAizen_e-comm_internal_domain.Category": {
-            "type": "object",
-            "properties": {
-                "created_at": {
-                    "type": "string"
-                },
-                "description": {
-                    "type": "string"
-                },
-                "id": {
-                    "type": "integer"
-                },
-                "name": {
-                    "type": "string"
-                },
-                "parent_id": {
-                    "type": "integer"
-                },
-                "updated_at": {
-                    "type": "string"
-                }
-            }
-        },
-        "github_com_PrimeraAizen_e-comm_internal_domain.ProductInteraction": {
-            "type": "object",
-            "properties": {
-                "category_id": {
-                    "type": "integer"
-                },
-                "interacted_at": {
-                    "type": "string"
-                },
-                "price": {
-                    "type": "number"
-                },
-                "product_id": {
-                    "type": "integer"
-                },
-                "product_name": {
-                    "type": "string"
-                }
-            }
-        },
-        "github_com_PrimeraAizen_e-comm_internal_domain.ProductRecommendation": {
-            "type": "object",
-            "properties": {
-                "category_id": {
-                    "type": "integer"
-                },
-                "price": {
-                    "type": "number"
-                },
-                "product_id": {
-                    "type": "integer"
-                },
-                "product_name": {
-                    "type": "string"
-                },
-                "reason": {
-                    "description": "Why recommended",
-                    "type": "string"
-                },
-                "score": {
-                    "description": "Similarity/relevance score",
-                    "type": "number"
-                }
-            }
-        },
-        "github_com_PrimeraAizen_e-comm_internal_domain.ProductStatistics": {
-            "type": "object",
-            "properties": {
-                "average_rating": {
-                    "type": "number"
-                },
-                "like_count": {
-                    "type": "integer"
-                },
-                "product_id": {
-                    "type": "integer"
-                },
-                "product_name": {
-                    "type": "string"
-                },
-                "purchase_count": {
-                    "type": "integer"
-                },
-                "review_count": {
-                    "type": "integer"
-                },
-                "view_count": {
-                    "type": "integer"
-                }
-            }
-        },
-        "github_com_PrimeraAizen_e-comm_internal_domain.ProductWithCategory": {
-            "type": "object",
-            "properties": {
-                "category_id": {
-                    "type": "integer"
-                },
-                "category_name": {
-                    "type": "string"
-                },
-                "created_at": {
-                    "type": "string"
-                },
-                "description": {
-                    "type": "string"
-                },
-                "id": {
-                    "type": "integer"
-                },
-                "image_url": {
-                    "type": "string"
-                },
-                "is_active": {
-                    "type": "boolean"
-                },
-                "name": {
-                    "type": "string"
-                },
-                "price": {
-                    "type": "number"
-                },
-                "stock": {
-                    "type": "integer"
-                },
-                "updated_at": {
-                    "type": "string"
-                }
-            }
-        },
-        "github_com_PrimeraAizen_e-comm_internal_domain.RecommendationResponse": {
-            "type": "object",
-            "properties": {
-                "algorithm": {
-                    "description": "e.g., \"collaborative_filtering\"",
-                    "type": "string"
-                },
-                "generated_at": {
-                    "type": "string"
-                },
-                "recommendations": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/github_com_PrimeraAizen_e-comm_internal_domain.ProductRecommendation"
-                    }
-                },
-                "user_id": {
-                    "type": "integer"
-                }
-            }
-        },
-        "github_com_PrimeraAizen_e-comm_internal_domain.UserInteractionSummary": {
-            "type": "object",
-            "properties": {
-                "liked_products": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/github_com_PrimeraAizen_e-comm_internal_domain.ProductInteraction"
-                    }
-                },
-                "purchased_products": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/github_com_PrimeraAizen_e-comm_internal_domain.ProductInteraction"
-                    }
-                },
-                "total_likes": {
-                    "type": "integer"
-                },
-                "total_purchases": {
-                    "type": "integer"
-                },
-                "total_views": {
-                    "type": "integer"
-                },
-                "user_id": {
-                    "type": "integer"
-                },
-                "viewed_products": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/github_com_PrimeraAizen_e-comm_internal_domain.ProductInteraction"
-                    }
-                }
-            }
         }
     },
     "securityDefinitions": {
@@ -1797,7 +1789,7 @@ const docTemplate = `{
 // SwaggerInfo holds exported Swagger Info so clients can modify it
 var SwaggerInfo = &swag.Spec{
 	Version:          "1.0",
-	Host:             "localhost:8080",
+	Host:             "",
 	BasePath:         "/api/v1",
 	Schemes:          []string{},
 	Title:            "E-Commerce API",

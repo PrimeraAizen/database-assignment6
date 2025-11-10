@@ -1,7 +1,10 @@
 APP_NAME=ecommerce
 MONGO_URI=mongodb://localhost:27017
 
-.PHONY: run build clean docker-up docker-down seed
+.PHONY: run build clean docker-up docker-down seed swagger
+
+swagger:
+	swag init -g cmd/web/main.go
 
 # Run the application
 run:

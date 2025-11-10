@@ -32,11 +32,11 @@ func (h *Handler) InitProfileRoutes(rg *gin.RouterGroup, authMiddleware gin.Hand
 // GetProfile godoc
 // @Summary Get user profile
 // @Description Get current user's profile information with detailed profile data
-// @Tags profile
+// @Tags profiles
 // @Produce json
 // @Security BearerAuth
 // @Success 200 {object} dto.ProfileResponse
-// @Router /users/me/profile [get]
+// @Router /profiles/me [get]
 func (h *Handler) GetProfile(c *gin.Context) {
 	// Get user ID from context
 	userIDStr, exists := c.Get("userId")
@@ -104,13 +104,13 @@ func (h *Handler) GetProfile(c *gin.Context) {
 // UpdateProfile godoc
 // @Summary Update user profile
 // @Description Update current user's detailed profile information
-// @Tags profile
+// @Tags profiles
 // @Accept json
 // @Produce json
 // @Param profile body dto.UpdateProfileRequest true "Profile update"
 // @Security BearerAuth
 // @Success 200 {object} dto.ProfileResponse
-// @Router /users/me/profile [put]
+// @Router /profiles/me [put]
 func (h *Handler) UpdateProfile(c *gin.Context) {
 	// Get user ID from context
 	userIDStr, exists := c.Get("userId")
@@ -224,13 +224,13 @@ func (h *Handler) UpdateProfile(c *gin.Context) {
 // ChangePassword godoc
 // @Summary Change password
 // @Description Change current user's password
-// @Tags profile
+// @Tags profiles
 // @Accept json
 // @Produce json
 // @Param password body dto.ChangePasswordRequest true "Password change"
 // @Security BearerAuth
 // @Success 200 {object} dto.SuccessResponse
-// @Router /users/me/password [put]
+// @Router /profiles/me/password [put]
 func (h *Handler) ChangePassword(c *gin.Context) {
 	// Get user ID from context
 	userIDStr, exists := c.Get("userId")
@@ -275,11 +275,11 @@ func (h *Handler) ChangePassword(c *gin.Context) {
 // DeleteAccount godoc
 // @Summary Delete account
 // @Description Soft delete current user's account
-// @Tags profile
+// @Tags profiles
 // @Produce json
 // @Security BearerAuth
 // @Success 200 {object} dto.SuccessResponse
-// @Router /users/me/account [delete]
+// @Router /profiles/me/account [delete]
 func (h *Handler) DeleteAccount(c *gin.Context) {
 	// Get user ID from context
 	userIDStr, exists := c.Get("userId")
@@ -307,12 +307,12 @@ func (h *Handler) DeleteAccount(c *gin.Context) {
 // GetMyInteractions godoc
 // @Summary Get my interactions
 // @Description Get summary of current user's product interactions
-// @Tags interactions
+// @Tags profiles
 // @Accept json
 // @Produce json
 // @Security BearerAuth
 // @Success 200 {object} domain.UserInteractionSummary
-// @Router /users/me/interactions [get]
+// @Router /profiles/me/interactions [get]
 func (h *Handler) GetMyInteractions(c *gin.Context) {
 	// Get user ID from context
 	userIDStr, exists := c.Get("userId")
@@ -340,13 +340,13 @@ func (h *Handler) GetMyInteractions(c *gin.Context) {
 // GetMyViewHistory godoc
 // @Summary Get my view history
 // @Description Get products the current user has viewed
-// @Tags interactions
+// @Tags profiles
 // @Accept json
 // @Produce json
 // @Param limit query int false "Limit" default(50)
 // @Security BearerAuth
 // @Success 200 {object} map[string]interface{}
-// @Router /users/me/views [get]
+// @Router /profiles/me/views [get]
 func (h *Handler) GetMyViewHistory(c *gin.Context) {
 	// Get user ID from context
 	userIDStr, exists := c.Get("userId")
@@ -379,13 +379,13 @@ func (h *Handler) GetMyViewHistory(c *gin.Context) {
 // GetMyLikedProducts godoc
 // @Summary Get my liked products
 // @Description Get products the current user has liked
-// @Tags interactions
+// @Tags profiles
 // @Accept json
 // @Produce json
 // @Param limit query int false "Limit" default(50)
 // @Security BearerAuth
 // @Success 200 {object} map[string]interface{}
-// @Router /users/me/likes [get]
+// @Router /profiles/me/likes [get]
 func (h *Handler) GetMyLikedProducts(c *gin.Context) {
 	// Get user ID from context
 	userIDStr, exists := c.Get("userId")
@@ -418,12 +418,12 @@ func (h *Handler) GetMyLikedProducts(c *gin.Context) {
 // GetRecommendations godoc
 // @Summary Get personalized product recommendations
 // @Description Get product recommendations based on collaborative filtering
-// @Tags recommendations
+// @Tags profiles
 // @Produce json
 // @Param limit query int false "Number of recommendations" default(10)
 // @Security BearerAuth
 // @Success 200 {object} domain.RecommendationResponse
-// @Router /users/me/recommendations [get]
+// @Router /profiles/me/recommendations [get]
 func (h *Handler) GetRecommendations(c *gin.Context) {
 	// Get user ID from context
 	userIDStr, exists := c.Get("userId")
@@ -456,12 +456,12 @@ func (h *Handler) GetRecommendations(c *gin.Context) {
 // GetSimilarUsers godoc
 // @Summary Get similar users
 // @Description Get users with similar interaction patterns
-// @Tags recommendations
+// @Tags profiles
 // @Produce json
 // @Param limit query int false "Number of similar users" default(10)
 // @Security BearerAuth
 // @Success 200 {object} map[string]interface{}
-// @Router /users/me/similar [get]
+// @Router /profiles/me/similar [get]
 func (h *Handler) GetSimilarUsers(c *gin.Context) {
 	// Get user ID from context
 	userIDStr, exists := c.Get("userId")
@@ -498,13 +498,13 @@ func (h *Handler) GetSimilarUsers(c *gin.Context) {
 // GetMyPurchases godoc
 // @Summary Get my purchases
 // @Description Get products the current user has purchased
-// @Tags interactions
+// @Tags profiles
 // @Accept json
 // @Produce json
 // @Param limit query int false "Limit" default(50)
 // @Security BearerAuth
 // @Success 200 {object} map[string]interface{}
-// @Router /users/me/purchases [get]
+// @Router /profiles/me/purchases [get]
 func (h *Handler) GetMyPurchases(c *gin.Context) {
 	// Get user ID from context
 	userIDStr, exists := c.Get("userId")

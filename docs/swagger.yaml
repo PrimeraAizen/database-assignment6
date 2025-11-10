@@ -1,6 +1,130 @@
 basePath: /api/v1
 definitions:
-  github_com_PrimeraAizen_e-comm_internal_delivery_dto.AuthResponse:
+  domain.Category:
+    properties:
+      created_at:
+        type: string
+      description:
+        type: string
+      id:
+        type: integer
+      name:
+        type: string
+      parent_id:
+        type: integer
+      updated_at:
+        type: string
+    type: object
+  domain.ProductInteraction:
+    properties:
+      category_id:
+        type: integer
+      interacted_at:
+        type: string
+      price:
+        type: number
+      product_id:
+        type: integer
+      product_name:
+        type: string
+    type: object
+  domain.ProductRecommendation:
+    properties:
+      category_id:
+        type: integer
+      price:
+        type: number
+      product_id:
+        type: integer
+      product_name:
+        type: string
+      reason:
+        description: Why recommended
+        type: string
+      score:
+        description: Similarity/relevance score
+        type: number
+    type: object
+  domain.ProductStatistics:
+    properties:
+      average_rating:
+        type: number
+      like_count:
+        type: integer
+      product_id:
+        type: integer
+      product_name:
+        type: string
+      purchase_count:
+        type: integer
+      review_count:
+        type: integer
+      view_count:
+        type: integer
+    type: object
+  domain.ProductWithCategory:
+    properties:
+      category_id:
+        type: integer
+      category_name:
+        type: string
+      created_at:
+        type: string
+      description:
+        type: string
+      id:
+        type: integer
+      image_url:
+        type: string
+      is_active:
+        type: boolean
+      name:
+        type: string
+      price:
+        type: number
+      stock:
+        type: integer
+      updated_at:
+        type: string
+    type: object
+  domain.RecommendationResponse:
+    properties:
+      algorithm:
+        description: e.g., "collaborative_filtering"
+        type: string
+      generated_at:
+        type: string
+      recommendations:
+        items:
+          $ref: '#/definitions/domain.ProductRecommendation'
+        type: array
+      user_id:
+        type: integer
+    type: object
+  domain.UserInteractionSummary:
+    properties:
+      liked_products:
+        items:
+          $ref: '#/definitions/domain.ProductInteraction'
+        type: array
+      purchased_products:
+        items:
+          $ref: '#/definitions/domain.ProductInteraction'
+        type: array
+      total_likes:
+        type: integer
+      total_purchases:
+        type: integer
+      total_views:
+        type: integer
+      user_id:
+        type: integer
+      viewed_products:
+        items:
+          $ref: '#/definitions/domain.ProductInteraction'
+        type: array
+    type: object
+  dto.AuthResponse:
     properties:
       access_token:
         type: string
@@ -11,7 +135,7 @@ definitions:
       token_type:
         type: string
     type: object
-  github_com_PrimeraAizen_e-comm_internal_delivery_dto.ChangePasswordRequest:
+  dto.ChangePasswordRequest:
     properties:
       confirm_password:
         minLength: 8
@@ -26,7 +150,7 @@ definitions:
     - current_password
     - new_password
     type: object
-  github_com_PrimeraAizen_e-comm_internal_delivery_dto.CreateCategoryRequest:
+  dto.CreateCategoryRequest:
     properties:
       description:
         type: string
@@ -37,7 +161,7 @@ definitions:
     required:
     - name
     type: object
-  github_com_PrimeraAizen_e-comm_internal_delivery_dto.CreateProductRequest:
+  dto.CreateProductRequest:
     properties:
       category_id:
         type: integer
@@ -57,12 +181,12 @@ definitions:
     - name
     - price
     type: object
-  github_com_PrimeraAizen_e-comm_internal_delivery_dto.ErrorResponse:
+  dto.ErrorResponse:
     properties:
       error:
         type: string
     type: object
-  github_com_PrimeraAizen_e-comm_internal_delivery_dto.LoginRequest:
+  dto.LoginRequest:
     properties:
       email:
         type: string
@@ -72,7 +196,7 @@ definitions:
     - email
     - password
     type: object
-  github_com_PrimeraAizen_e-comm_internal_delivery_dto.ProductListResponse:
+  dto.ProductListResponse:
     properties:
       limit:
         type: integer
@@ -80,12 +204,12 @@ definitions:
         type: integer
       products:
         items:
-          $ref: '#/definitions/github_com_PrimeraAizen_e-comm_internal_domain.ProductWithCategory'
+          $ref: '#/definitions/domain.ProductWithCategory'
         type: array
       total:
         type: integer
     type: object
-  github_com_PrimeraAizen_e-comm_internal_delivery_dto.ProfileResponse:
+  dto.ProfileResponse:
     properties:
       address:
         type: string
@@ -120,7 +244,7 @@ definitions:
       user_id:
         type: integer
     type: object
-  github_com_PrimeraAizen_e-comm_internal_delivery_dto.PurchaseProductRequest:
+  dto.PurchaseProductRequest:
     properties:
       quantity:
         minimum: 1
@@ -128,14 +252,14 @@ definitions:
     required:
     - quantity
     type: object
-  github_com_PrimeraAizen_e-comm_internal_delivery_dto.RefreshTokenRequest:
+  dto.RefreshTokenRequest:
     properties:
       refresh_token:
         type: string
     required:
     - refresh_token
     type: object
-  github_com_PrimeraAizen_e-comm_internal_delivery_dto.RegisterRequest:
+  dto.RegisterRequest:
     properties:
       email:
         type: string
@@ -150,12 +274,12 @@ definitions:
     - password
     - password_confirm
     type: object
-  github_com_PrimeraAizen_e-comm_internal_delivery_dto.SuccessResponse:
+  dto.SuccessResponse:
     properties:
       message:
         type: string
     type: object
-  github_com_PrimeraAizen_e-comm_internal_delivery_dto.UpdateCategoryRequest:
+  dto.UpdateCategoryRequest:
     properties:
       description:
         type: string
@@ -164,7 +288,7 @@ definitions:
       parent_id:
         type: integer
     type: object
-  github_com_PrimeraAizen_e-comm_internal_delivery_dto.UpdateProductRequest:
+  dto.UpdateProductRequest:
     properties:
       category_id:
         type: integer
@@ -181,7 +305,7 @@ definitions:
       stock:
         type: integer
     type: object
-  github_com_PrimeraAizen_e-comm_internal_delivery_dto.UpdateProfileRequest:
+  dto.UpdateProfileRequest:
     properties:
       address:
         type: string
@@ -214,141 +338,10 @@ definitions:
         maxLength: 20
         type: string
     type: object
-  github_com_PrimeraAizen_e-comm_internal_domain.Category:
-    properties:
-      created_at:
-        type: string
-      description:
-        type: string
-      id:
-        type: integer
-      name:
-        type: string
-      parent_id:
-        type: integer
-      updated_at:
-        type: string
-    type: object
-  github_com_PrimeraAizen_e-comm_internal_domain.ProductInteraction:
-    properties:
-      category_id:
-        type: integer
-      interacted_at:
-        type: string
-      price:
-        type: number
-      product_id:
-        type: integer
-      product_name:
-        type: string
-    type: object
-  github_com_PrimeraAizen_e-comm_internal_domain.ProductRecommendation:
-    properties:
-      category_id:
-        type: integer
-      price:
-        type: number
-      product_id:
-        type: integer
-      product_name:
-        type: string
-      reason:
-        description: Why recommended
-        type: string
-      score:
-        description: Similarity/relevance score
-        type: number
-    type: object
-  github_com_PrimeraAizen_e-comm_internal_domain.ProductStatistics:
-    properties:
-      average_rating:
-        type: number
-      like_count:
-        type: integer
-      product_id:
-        type: integer
-      product_name:
-        type: string
-      purchase_count:
-        type: integer
-      review_count:
-        type: integer
-      view_count:
-        type: integer
-    type: object
-  github_com_PrimeraAizen_e-comm_internal_domain.ProductWithCategory:
-    properties:
-      category_id:
-        type: integer
-      category_name:
-        type: string
-      created_at:
-        type: string
-      description:
-        type: string
-      id:
-        type: integer
-      image_url:
-        type: string
-      is_active:
-        type: boolean
-      name:
-        type: string
-      price:
-        type: number
-      stock:
-        type: integer
-      updated_at:
-        type: string
-    type: object
-  github_com_PrimeraAizen_e-comm_internal_domain.RecommendationResponse:
-    properties:
-      algorithm:
-        description: e.g., "collaborative_filtering"
-        type: string
-      generated_at:
-        type: string
-      recommendations:
-        items:
-          $ref: '#/definitions/github_com_PrimeraAizen_e-comm_internal_domain.ProductRecommendation'
-        type: array
-      user_id:
-        type: integer
-    type: object
-  github_com_PrimeraAizen_e-comm_internal_domain.UserInteractionSummary:
-    properties:
-      liked_products:
-        items:
-          $ref: '#/definitions/github_com_PrimeraAizen_e-comm_internal_domain.ProductInteraction'
-        type: array
-      purchased_products:
-        items:
-          $ref: '#/definitions/github_com_PrimeraAizen_e-comm_internal_domain.ProductInteraction'
-        type: array
-      total_likes:
-        type: integer
-      total_purchases:
-        type: integer
-      total_views:
-        type: integer
-      user_id:
-        type: integer
-      viewed_products:
-        items:
-          $ref: '#/definitions/github_com_PrimeraAizen_e-comm_internal_domain.ProductInteraction'
-        type: array
-    type: object
-host: localhost:8080
 info:
-  contact:
-    email: support@ecommerce.com
-    name: API Support
+  contact: {}
   description: E-Commerce API with MongoDB, JWT Authentication, Product Catalog, User
     Interactions, and Recommendation System
-  license:
-    name: MIT
-    url: https://opensource.org/licenses/MIT
-  termsOfService: http://swagger.io/terms/
   title: E-Commerce API
   version: "1.0"
 paths:
@@ -363,30 +356,30 @@ paths:
         name: credentials
         required: true
         schema:
-          $ref: '#/definitions/github_com_PrimeraAizen_e-comm_internal_delivery_dto.LoginRequest'
+          $ref: '#/definitions/dto.LoginRequest'
       produces:
       - application/json
       responses:
         "200":
           description: Login successful with tokens
           schema:
-            $ref: '#/definitions/github_com_PrimeraAizen_e-comm_internal_delivery_dto.AuthResponse'
+            $ref: '#/definitions/dto.AuthResponse'
         "400":
           description: Invalid request body or validation error
           schema:
-            $ref: '#/definitions/github_com_PrimeraAizen_e-comm_internal_delivery_dto.ErrorResponse'
+            $ref: '#/definitions/dto.ErrorResponse'
         "401":
           description: Invalid email or password
           schema:
-            $ref: '#/definitions/github_com_PrimeraAizen_e-comm_internal_delivery_dto.ErrorResponse'
+            $ref: '#/definitions/dto.ErrorResponse'
         "403":
           description: User account is inactive
           schema:
-            $ref: '#/definitions/github_com_PrimeraAizen_e-comm_internal_delivery_dto.ErrorResponse'
+            $ref: '#/definitions/dto.ErrorResponse'
         "500":
           description: Internal server error
           schema:
-            $ref: '#/definitions/github_com_PrimeraAizen_e-comm_internal_delivery_dto.ErrorResponse'
+            $ref: '#/definitions/dto.ErrorResponse'
       summary: Login user
       tags:
       - auth
@@ -401,30 +394,30 @@ paths:
         name: token
         required: true
         schema:
-          $ref: '#/definitions/github_com_PrimeraAizen_e-comm_internal_delivery_dto.RefreshTokenRequest'
+          $ref: '#/definitions/dto.RefreshTokenRequest'
       produces:
       - application/json
       responses:
         "200":
           description: Token refreshed successfully
           schema:
-            $ref: '#/definitions/github_com_PrimeraAizen_e-comm_internal_delivery_dto.AuthResponse'
+            $ref: '#/definitions/dto.AuthResponse'
         "400":
           description: Invalid request body or missing refresh token
           schema:
-            $ref: '#/definitions/github_com_PrimeraAizen_e-comm_internal_delivery_dto.ErrorResponse'
+            $ref: '#/definitions/dto.ErrorResponse'
         "401":
           description: Invalid or expired refresh token
           schema:
-            $ref: '#/definitions/github_com_PrimeraAizen_e-comm_internal_delivery_dto.ErrorResponse'
+            $ref: '#/definitions/dto.ErrorResponse'
         "403":
           description: User account is inactive
           schema:
-            $ref: '#/definitions/github_com_PrimeraAizen_e-comm_internal_delivery_dto.ErrorResponse'
+            $ref: '#/definitions/dto.ErrorResponse'
         "500":
           description: Internal server error
           schema:
-            $ref: '#/definitions/github_com_PrimeraAizen_e-comm_internal_delivery_dto.ErrorResponse'
+            $ref: '#/definitions/dto.ErrorResponse'
       summary: Refresh access token
       tags:
       - auth
@@ -439,26 +432,26 @@ paths:
         name: user
         required: true
         schema:
-          $ref: '#/definitions/github_com_PrimeraAizen_e-comm_internal_delivery_dto.RegisterRequest'
+          $ref: '#/definitions/dto.RegisterRequest'
       produces:
       - application/json
       responses:
         "201":
           description: User registered successfully with tokens
           schema:
-            $ref: '#/definitions/github_com_PrimeraAizen_e-comm_internal_delivery_dto.AuthResponse'
+            $ref: '#/definitions/dto.AuthResponse'
         "400":
           description: Invalid request body or validation error
           schema:
-            $ref: '#/definitions/github_com_PrimeraAizen_e-comm_internal_delivery_dto.ErrorResponse'
+            $ref: '#/definitions/dto.ErrorResponse'
         "409":
           description: User with this email already exists
           schema:
-            $ref: '#/definitions/github_com_PrimeraAizen_e-comm_internal_delivery_dto.ErrorResponse'
+            $ref: '#/definitions/dto.ErrorResponse'
         "500":
           description: Internal server error
           schema:
-            $ref: '#/definitions/github_com_PrimeraAizen_e-comm_internal_delivery_dto.ErrorResponse'
+            $ref: '#/definitions/dto.ErrorResponse'
       summary: Register a new user
       tags:
       - auth
@@ -474,7 +467,7 @@ paths:
           description: OK
           schema:
             items:
-              $ref: '#/definitions/github_com_PrimeraAizen_e-comm_internal_domain.Category'
+              $ref: '#/definitions/domain.Category'
             type: array
       security:
       - BearerAuth: []
@@ -491,17 +484,17 @@ paths:
         name: category
         required: true
         schema:
-          $ref: '#/definitions/github_com_PrimeraAizen_e-comm_internal_delivery_dto.CreateCategoryRequest'
+          $ref: '#/definitions/dto.CreateCategoryRequest'
       produces:
       - application/json
       responses:
         "201":
           description: Created
           schema:
-            $ref: '#/definitions/github_com_PrimeraAizen_e-comm_internal_domain.Category'
+            $ref: '#/definitions/domain.Category'
       security:
       - BearerAuth: []
-      summary: Create category (Admin only)
+      summary: Create category
       tags:
       - categories
   /categories/{id}:
@@ -522,7 +515,7 @@ paths:
           description: No Content
       security:
       - BearerAuth: []
-      summary: Delete category (Admin only)
+      summary: Delete category
       tags:
       - categories
     get:
@@ -541,7 +534,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/github_com_PrimeraAizen_e-comm_internal_domain.Category'
+            $ref: '#/definitions/domain.Category'
       security:
       - BearerAuth: []
       summary: Get category by ID
@@ -550,7 +543,7 @@ paths:
     put:
       consumes:
       - application/json
-      description: Update an existing category (partial updates supported)
+      description: Update an existing category
       parameters:
       - description: Category ID
         in: path
@@ -562,17 +555,17 @@ paths:
         name: category
         required: true
         schema:
-          $ref: '#/definitions/github_com_PrimeraAizen_e-comm_internal_delivery_dto.UpdateCategoryRequest'
+          $ref: '#/definitions/dto.UpdateCategoryRequest'
       produces:
       - application/json
       responses:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/github_com_PrimeraAizen_e-comm_internal_domain.Category'
+            $ref: '#/definitions/domain.Category'
       security:
       - BearerAuth: []
-      summary: Update category (Admin only)
+      summary: Update category
       tags:
       - categories
   /products:
@@ -623,7 +616,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/github_com_PrimeraAizen_e-comm_internal_delivery_dto.ProductListResponse'
+            $ref: '#/definitions/dto.ProductListResponse'
       security:
       - BearerAuth: []
       summary: List products
@@ -639,22 +632,22 @@ paths:
         name: product
         required: true
         schema:
-          $ref: '#/definitions/github_com_PrimeraAizen_e-comm_internal_delivery_dto.CreateProductRequest'
+          $ref: '#/definitions/dto.CreateProductRequest'
       produces:
       - application/json
       responses:
         "201":
           description: Created
           schema:
-            $ref: '#/definitions/github_com_PrimeraAizen_e-comm_internal_domain.ProductWithCategory'
+            $ref: '#/definitions/domain.ProductWithCategory'
         "400":
           description: Bad Request
           schema:
-            $ref: '#/definitions/github_com_PrimeraAizen_e-comm_internal_delivery_dto.ErrorResponse'
+            $ref: '#/definitions/dto.ErrorResponse'
         "500":
           description: Internal Server Error
           schema:
-            $ref: '#/definitions/github_com_PrimeraAizen_e-comm_internal_delivery_dto.ErrorResponse'
+            $ref: '#/definitions/dto.ErrorResponse'
       security:
       - BearerAuth: []
       summary: Create a new product
@@ -677,15 +670,15 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/github_com_PrimeraAizen_e-comm_internal_delivery_dto.SuccessResponse'
+            $ref: '#/definitions/dto.SuccessResponse'
         "404":
           description: Not Found
           schema:
-            $ref: '#/definitions/github_com_PrimeraAizen_e-comm_internal_delivery_dto.ErrorResponse'
+            $ref: '#/definitions/dto.ErrorResponse'
         "500":
           description: Internal Server Error
           schema:
-            $ref: '#/definitions/github_com_PrimeraAizen_e-comm_internal_delivery_dto.ErrorResponse'
+            $ref: '#/definitions/dto.ErrorResponse'
       security:
       - BearerAuth: []
       summary: Delete a product
@@ -707,11 +700,11 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/github_com_PrimeraAizen_e-comm_internal_domain.ProductWithCategory'
+            $ref: '#/definitions/domain.ProductWithCategory'
         "404":
           description: Not Found
           schema:
-            $ref: '#/definitions/github_com_PrimeraAizen_e-comm_internal_delivery_dto.ErrorResponse'
+            $ref: '#/definitions/dto.ErrorResponse'
       security:
       - BearerAuth: []
       summary: Get product by ID
@@ -732,26 +725,26 @@ paths:
         name: product
         required: true
         schema:
-          $ref: '#/definitions/github_com_PrimeraAizen_e-comm_internal_delivery_dto.UpdateProductRequest'
+          $ref: '#/definitions/dto.UpdateProductRequest'
       produces:
       - application/json
       responses:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/github_com_PrimeraAizen_e-comm_internal_domain.ProductWithCategory'
+            $ref: '#/definitions/domain.ProductWithCategory'
         "400":
           description: Bad Request
           schema:
-            $ref: '#/definitions/github_com_PrimeraAizen_e-comm_internal_delivery_dto.ErrorResponse'
+            $ref: '#/definitions/dto.ErrorResponse'
         "404":
           description: Not Found
           schema:
-            $ref: '#/definitions/github_com_PrimeraAizen_e-comm_internal_delivery_dto.ErrorResponse'
+            $ref: '#/definitions/dto.ErrorResponse'
         "500":
           description: Internal Server Error
           schema:
-            $ref: '#/definitions/github_com_PrimeraAizen_e-comm_internal_delivery_dto.ErrorResponse'
+            $ref: '#/definitions/dto.ErrorResponse'
       security:
       - BearerAuth: []
       summary: Update a product
@@ -774,12 +767,12 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/github_com_PrimeraAizen_e-comm_internal_delivery_dto.SuccessResponse'
+            $ref: '#/definitions/dto.SuccessResponse'
       security:
       - BearerAuth: []
       summary: Unlike a product
       tags:
-      - interactions
+      - products
     post:
       consumes:
       - application/json
@@ -796,12 +789,12 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/github_com_PrimeraAizen_e-comm_internal_delivery_dto.SuccessResponse'
+            $ref: '#/definitions/dto.SuccessResponse'
       security:
       - BearerAuth: []
       summary: Like a product
       tags:
-      - interactions
+      - products
   /products/{id}/liked:
     get:
       consumes:
@@ -826,7 +819,7 @@ paths:
       - BearerAuth: []
       summary: Check if product is liked
       tags:
-      - interactions
+      - products
   /products/{id}/purchase:
     post:
       consumes:
@@ -843,19 +836,19 @@ paths:
         name: purchase
         required: true
         schema:
-          $ref: '#/definitions/github_com_PrimeraAizen_e-comm_internal_delivery_dto.PurchaseProductRequest'
+          $ref: '#/definitions/dto.PurchaseProductRequest'
       produces:
       - application/json
       responses:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/github_com_PrimeraAizen_e-comm_internal_delivery_dto.SuccessResponse'
+            $ref: '#/definitions/dto.SuccessResponse'
       security:
       - BearerAuth: []
       summary: Purchase a product
       tags:
-      - interactions
+      - products
   /products/{id}/purchased:
     get:
       consumes:
@@ -880,7 +873,7 @@ paths:
       - BearerAuth: []
       summary: Check if product is purchased
       tags:
-      - interactions
+      - products
   /products/{id}/statistics:
     get:
       consumes:
@@ -898,15 +891,15 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/github_com_PrimeraAizen_e-comm_internal_domain.ProductStatistics'
+            $ref: '#/definitions/domain.ProductStatistics'
         "404":
           description: Not Found
           schema:
-            $ref: '#/definitions/github_com_PrimeraAizen_e-comm_internal_delivery_dto.ErrorResponse'
+            $ref: '#/definitions/dto.ErrorResponse'
         "500":
           description: Internal Server Error
           schema:
-            $ref: '#/definitions/github_com_PrimeraAizen_e-comm_internal_delivery_dto.ErrorResponse'
+            $ref: '#/definitions/dto.ErrorResponse'
       security:
       - BearerAuth: []
       summary: Get product statistics
@@ -929,13 +922,51 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/github_com_PrimeraAizen_e-comm_internal_delivery_dto.SuccessResponse'
+            $ref: '#/definitions/dto.SuccessResponse'
       security:
       - BearerAuth: []
       summary: Record product view
       tags:
-      - interactions
-  /users/me/account:
+      - products
+  /profiles/me:
+    get:
+      description: Get current user's profile information with detailed profile data
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dto.ProfileResponse'
+      security:
+      - BearerAuth: []
+      summary: Get user profile
+      tags:
+      - profiles
+    put:
+      consumes:
+      - application/json
+      description: Update current user's detailed profile information
+      parameters:
+      - description: Profile update
+        in: body
+        name: profile
+        required: true
+        schema:
+          $ref: '#/definitions/dto.UpdateProfileRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dto.ProfileResponse'
+      security:
+      - BearerAuth: []
+      summary: Update user profile
+      tags:
+      - profiles
+  /profiles/me/account:
     delete:
       description: Soft delete current user's account
       produces:
@@ -944,13 +975,13 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/github_com_PrimeraAizen_e-comm_internal_delivery_dto.SuccessResponse'
+            $ref: '#/definitions/dto.SuccessResponse'
       security:
       - BearerAuth: []
       summary: Delete account
       tags:
-      - profile
-  /users/me/interactions:
+      - profiles
+  /profiles/me/interactions:
     get:
       consumes:
       - application/json
@@ -961,13 +992,13 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/github_com_PrimeraAizen_e-comm_internal_domain.UserInteractionSummary'
+            $ref: '#/definitions/domain.UserInteractionSummary'
       security:
       - BearerAuth: []
       summary: Get my interactions
       tags:
-      - interactions
-  /users/me/likes:
+      - profiles
+  /profiles/me/likes:
     get:
       consumes:
       - application/json
@@ -990,8 +1021,8 @@ paths:
       - BearerAuth: []
       summary: Get my liked products
       tags:
-      - interactions
-  /users/me/password:
+      - profiles
+  /profiles/me/password:
     put:
       consumes:
       - application/json
@@ -1002,58 +1033,20 @@ paths:
         name: password
         required: true
         schema:
-          $ref: '#/definitions/github_com_PrimeraAizen_e-comm_internal_delivery_dto.ChangePasswordRequest'
+          $ref: '#/definitions/dto.ChangePasswordRequest'
       produces:
       - application/json
       responses:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/github_com_PrimeraAizen_e-comm_internal_delivery_dto.SuccessResponse'
+            $ref: '#/definitions/dto.SuccessResponse'
       security:
       - BearerAuth: []
       summary: Change password
       tags:
-      - profile
-  /users/me/profile:
-    get:
-      description: Get current user's profile information with detailed profile data
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            $ref: '#/definitions/github_com_PrimeraAizen_e-comm_internal_delivery_dto.ProfileResponse'
-      security:
-      - BearerAuth: []
-      summary: Get user profile
-      tags:
-      - profile
-    put:
-      consumes:
-      - application/json
-      description: Update current user's detailed profile information
-      parameters:
-      - description: Profile update
-        in: body
-        name: profile
-        required: true
-        schema:
-          $ref: '#/definitions/github_com_PrimeraAizen_e-comm_internal_delivery_dto.UpdateProfileRequest'
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            $ref: '#/definitions/github_com_PrimeraAizen_e-comm_internal_delivery_dto.ProfileResponse'
-      security:
-      - BearerAuth: []
-      summary: Update user profile
-      tags:
-      - profile
-  /users/me/purchases:
+      - profiles
+  /profiles/me/purchases:
     get:
       consumes:
       - application/json
@@ -1076,8 +1069,8 @@ paths:
       - BearerAuth: []
       summary: Get my purchases
       tags:
-      - interactions
-  /users/me/recommendations:
+      - profiles
+  /profiles/me/recommendations:
     get:
       description: Get product recommendations based on collaborative filtering
       parameters:
@@ -1092,13 +1085,13 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/github_com_PrimeraAizen_e-comm_internal_domain.RecommendationResponse'
+            $ref: '#/definitions/domain.RecommendationResponse'
       security:
       - BearerAuth: []
       summary: Get personalized product recommendations
       tags:
-      - recommendations
-  /users/me/similar:
+      - profiles
+  /profiles/me/similar:
     get:
       description: Get users with similar interaction patterns
       parameters:
@@ -1119,8 +1112,8 @@ paths:
       - BearerAuth: []
       summary: Get similar users
       tags:
-      - recommendations
-  /users/me/views:
+      - profiles
+  /profiles/me/views:
     get:
       consumes:
       - application/json
@@ -1143,7 +1136,7 @@ paths:
       - BearerAuth: []
       summary: Get my view history
       tags:
-      - interactions
+      - profiles
 securityDefinitions:
   BearerAuth:
     description: 'Enter your JWT token in the format: Bearer {token}'
